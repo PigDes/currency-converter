@@ -7,6 +7,13 @@
 	<body>
 
 		<script>
+			const rateUsd = 1;
+			const rateEur = 0.85;
+			const rateGbp = 0.77;
+
+			function converter (myMoney, baseCurrency, targetCurrency) {
+				return ((myMoney/baseCurrency) * targetCurrency).toFixed(2);
+			}
 		</script>
 	</body>
 </html>
