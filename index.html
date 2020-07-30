@@ -3,17 +3,78 @@
 	<head>
 		<title>Currency Converter</title>
 		<meta charset='UTF-8'>
+		<style>
+
+		</style>
 	</head>
 	<body>
 
+		<div id="converter-div">
+
+			<form>
+				<div>
+					<label for="my-money; currency-list">Please provide the amount and currency you want to convert:</label><br>
+					<input id="my-money" type="text">
+					<select id="base-currency">
+						<option value="USD">USD</option>
+						<option value="EUR">EUR</option>
+						<option value="GBP">GBP</option>
+					</select>
+				</div>
+
+				<div>
+					<label for="target-currency">Please choose final currency:</label>
+					<select id="target-currency">
+						<option value="USD">USD</option>
+						<option value="EUR">EUR</option>
+						<option value="GBP">GBP</option>
+					</select>
+				</div>
+
+				<button id="go-button" type="button">Convert</button>
+
+				<button id="clear-button" type="button">Clear</button>
+
+			</form>
+
+		</div>
+		<div id="result-div">
+			
+		</div>
+
 		<script>
-			const rateUsd = 1;
-			const rateEur = 0.85;
-			const rateGbp = 0.77;
+			const CURRENCY_RATES = {
+				USD: 1,
+				EUR: 0.85,
+				GBP: 0.77,
+			};
+
 
 			function converter (myMoney, baseCurrency, targetCurrency) {
 				return ((myMoney/baseCurrency) * targetCurrency).toFixed(2);
 			}
+
+			function clearInput () {
+				document.querySelector('#my-money').value = '';
+				document.querySelector('#result-div').textContent = '';
+				document.querySelector('#target-currency').value = 'USD';
+				document.querySelector('#base-currency').value = 'USD';
+			}
+
+			document.querySelector('#go-button').onclick = function () {
+
+				let myMoney = document.querySelector('#my-money').value;
+				let baseCurrency = CURRENCY_RATES[document.querySelector('#base-currency').value];
+				let targetCurrency = CURRENCY_RATES[document.querySelector('#target-currency').value];
+
+
+				document.querySelector('#result-div').textContent = converter(myMoney, baseCurrency, targetCurrency);
+			}
+
+
+
+
+
 		</script>
 	</body>
 </html>
